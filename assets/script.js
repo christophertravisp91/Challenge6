@@ -6,9 +6,10 @@ var currentEvent = document.getElementById("currentEvent");
 function getWeatherApi() {
 
     //Retreiving city from clicking button
-    document.getElementById("citySearch").onclick = function(city) {
+    document.getElementById("find").onclick = function(city) {
     var city = document.getElementById("city").value; 
-    console.log(city)
+    console.log(city);
+
         
 
         
@@ -88,7 +89,7 @@ function getWeatherApi() {
 //             gameForecast.appendChild(lowTemp);
 
 //         }
-    
-// }
+    }
+}
 
 getWeatherApi();
