@@ -1,5 +1,5 @@
 var key = "e444f8e33f88e1a3c67ce417f2ab0ca2";
-var weatherForecast = document.getElementById("forecast");
+var dayForecast = document.getElementById("forecast");
 var currentEvent = document.getElementById("currentEvent");
 
 //Retreiving Weather function
@@ -8,16 +8,13 @@ function getWeatherApi() {
     //Retreiving city from clicking button
     document.getElementById("city-btn").onclick = function(city) {
     var city = document.getElementById("city").value; 
-    console.log("This is " + city);
+    // console.log("This is " + city);
 
 
-        
-
-        
     // Current Forecast
     var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key;
     
-    console.log("API Link: " + requestURL)  
+    // console.log("API Link: " + requestURL)  
     
     fetch(requestURL)
         .then(function (response) {
@@ -70,7 +67,6 @@ function getWeatherApi() {
             var windSpeed = document.createElement('p');
             windSpeed.textContent="Wind: " + parseInt(data.wind.speed)  + " MPH";
 
-                //var icons = document.createElement("img")
                 var conditions = data.weather[0].description;
                 console.log("Conditions: " + conditions)
 
@@ -82,12 +78,12 @@ function getWeatherApi() {
 
 
 
-            gameForecast.appendChild(currentDate);
-            gameForecast.appendChild(currentTemp);
-            gameForecast.appendChild(feelsLike);
-            gameForecast.appendChild(windSpeed);
-            gameForecast.appendChild(highTemp);
-            gameForecast.appendChild(lowTemp);
+            dayForecast.appendChild(currentDate);
+            dayForecast.appendChild(currentTemp);
+            dayForecast.appendChild(feelsLike);
+            dayForecast.appendChild(windSpeed);
+            dayForecast.appendChild(highTemp);
+            dayForecast.appendChild(lowTemp);
 
         
         var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&appid=" + key;
