@@ -7,7 +7,7 @@ function getWeatherApi() {
 
     //Retreiving city from clicking button
     document.getElementById("city-btn").onclick = function(city) {
-    let input = document.getElementById("city").value; 
+    var city = document.getElementById("city").value; 
     console.log("This is " + city);
 
 
@@ -25,96 +25,96 @@ function getWeatherApi() {
         })
         .then (function(data){
 
-    //             //Console Logging for testing
-    //             //console.log("Current Temp " + data.main.temp + "°F" );
-    //             //console.log("Feels Like " +data.main.feels_like + "°F");
-    //             //console.log("High Temp " + data.main.temp_max + "°F");
-    //             //console.log("Low Temp " + data.main.temp_min + "°F");
-    //             //console.log ("Wind Speed " +data.wind.speed + " MPH")
-    //             // console.log ("dt " + data.dt);
+                // Console Logging for testing
+                console.log("Current Temp " + data.main.temp + "°F" );
+                console.log("Feels Like " +data.main.feels_like + "°F");
+                console.log("High Temp " + data.main.temp_max + "°F");
+                console.log("Low Temp " + data.main.temp_min + "°F");
+                console.log ("Wind Speed " +data.wind.speed + " MPH")
+                console.log ("dt " + data.dt);
             
                 
 
-    //             //Date info
-    //             var dateResponse = (data.dt);
-    //             var date = new Date(0);
-    //             date.setUTCSeconds(dateResponse);
-    //             var d = date;
-    //             console.log("date " +d);
-    //             var dOutput = d.getFullYear();
-    //             console.log(" date updated" +dOutput);
-    //             var monthOutput = d.getMonth()+1;
-    //             console.log(monthOutput);
-    //             var dayOutput = d.getDate();
-    //             console.log(dayOutput);
+                //Date info
+                var dateResponse = (data.dt);
+                var date = new Date(0);
+                date.setUTCSeconds(dateResponse);
+                var d = date;
+                console.log("date " +d);
+                var dOutput = d.getFullYear();
+                console.log(" date updated" +dOutput);
+                var monthOutput = d.getMonth()+1;
+                console.log(monthOutput);
+                var dayOutput = d.getDate();
+                console.log(dayOutput);
 
 
                 
     //             //Creating the elements for display
 
-    //         var currentDate = document.createElement('h2');
-    //             currentDate.textContent= monthOutput + "/" + dayOutput + "/" + dOutput;
+            var currentDate = document.createElement('h2');
+                currentDate.textContent= monthOutput + "/" + dayOutput + "/" + dOutput;
 
-    //         var currentTemp = document.createElement('h3');
-    //         currentTemp.textContent = parseInt(data.main.temp)+ "° F" ;
+            var currentTemp = document.createElement('h3');
+            currentTemp.textContent = parseInt(data.main.temp)+ "° F" ;
 
-    //         var feelsLike = document.createElement('h4');
-    //         feelsLike.textContent="Feels Like " + parseInt(data.main.feels_like) + "° F";
+            var feelsLike = document.createElement('h4');
+            feelsLike.textContent="Feels Like " + parseInt(data.main.feels_like) + "° F";
 
-    //         var highTemp = document.createElement('p');
-    //         highTemp.textContent="H: " + parseInt(data.main.temp_max) + "° F";
+            var highTemp = document.createElement('p');
+            highTemp.textContent="H: " + parseInt(data.main.temp_max) + "° F";
 
-    //         var lowTemp = document.createElement('p');
-    //         lowTemp.textContent="L: " + parseInt(data.main.temp_min) + "° F";
+            var lowTemp = document.createElement('p');
+            lowTemp.textContent="L: " + parseInt(data.main.temp_min) + "° F";
 
-    //         var windSpeed = document.createElement('p');
-    //         windSpeed.textContent="Wind: " + parseInt(data.wind.speed)  + " MPH";
+            var windSpeed = document.createElement('p');
+            windSpeed.textContent="Wind: " + parseInt(data.wind.speed)  + " MPH";
 
-    //             //var icons = document.createElement("img")
-    //             var conditions = data.weather[0].description;
-    //             console.log("Conditions: " + conditions)
+                //var icons = document.createElement("img")
+                var conditions = data.weather[0].description;
+                console.log("Conditions: " + conditions)
 
-    //             var lat = (data.coord.lat);
-    //             var lon = (data.coord.lon);
+                var lat = (data.coord.lat);
+                var lon = (data.coord.lon);
                 
-                // console.log(lat);
-                // console.log(lon);
+                console.log(lat);
+                console.log(lon);
 
 
 
-        //     gameForecast.appendChild(currentDate);
-        //     gameForecast.appendChild(currentTemp);
-        //     gameForecast.appendChild(feelsLike);
-        //     gameForecast.appendChild(windSpeed);
-        //     gameForecast.appendChild(highTemp);
-        //     gameForecast.appendChild(lowTemp);
+            gameForecast.appendChild(currentDate);
+            gameForecast.appendChild(currentTemp);
+            gameForecast.appendChild(feelsLike);
+            gameForecast.appendChild(windSpeed);
+            gameForecast.appendChild(highTemp);
+            gameForecast.appendChild(lowTemp);
 
         
-        // var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&appid=" + key;
+        var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&appid=" + key;
         
-        // fetch(forecastURL)
-        // .then(function (response) {
-        //     return response.json();
+        fetch(forecastURL)
+        .then(function (response) {
+            return response.json();
             
-        // })
-        // .then(function(response){
-        //     console.log( "dt" + response.daily[0].dt);
+        })
+        .then(function(response){
+            console.log( "dt" + response.daily[0].dt);
 
-        //     for (var i=1; i<8 ;i++){
-        //     var futureDateResponse = (response.daily[i].dt);
-        //     var fd = new Date(i);
-        //     fd.setUTCSeconds(futureDateResponse);
+            for (var i=1; i<8 ;i++){
+            var futureDateResponse = (response.daily[i].dt);
+            var fd = new Date(i);
+            fd.setUTCSeconds(futureDateResponse);
 
 
-        //     var fiveDay = document.createElement("h1");
-        //     fiveDay.textContent = fd;
+            var fiveDay = document.createElement("h1");
+            fiveDay.textContent = fd;
 
-        //         weatherForecast.appendChild(fiveDay);
+                weatherForecast.appendChild(fiveDay);
 
-        //         console.log(fd);
-        //     }
+                console.log(fd);
+            }
 
-        // })
+        })
         });
     }
 }
