@@ -14,28 +14,32 @@
 
     </header>
     
-    <div class="container">
-        <div class="row row-cols-2">
-            <div class="col-3">
-                <div class="citySearch">Search City
+    <div class="container-fluid">
+        <div class="row row-col-3">
+            <div class="col-sm-3" style="background-color: rgb(105, 224, 240);">
+                <div class="citySearch">
+                    <h3>Search</h3>
                     <input class="input" type="text" id="city" placeholder="Search..">
                     <button type="button" class="btn btn-success" id="city-btn">Find</button>
                 </div>
                 
             </div>
 
-            <div class="col-9">Current Forecast
+            <div class="col-sm-9" style="background-color: rgb(105, 224, 240);">
+                <h3>Current Forecast</h3>
                 <div class="container">
-                    <div class="forecast"></div>
-                    <h2></h2>
+                    <div id="forecast"></div>
                 </div>
 
             </div>
 
-            <div class="col-3">Recent Searches
+            <div class="col-sm-3" style="background-color: rgb(105, 224, 240);">
+                <h3>Recent Searches</h3>
             </div>
 
-            <div class="col-9">5 Day Forecast
+            <div class="col-sm-9" style="background-color: rgb(105, 224, 240);">
+                <h3>5 Day Forecast</h3>
+                <div id="fiveDay"></div>
 
             </div>
         </div>

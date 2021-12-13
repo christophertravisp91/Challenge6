@@ -1,6 +1,6 @@
 var key = "e444f8e33f88e1a3c67ce417f2ab0ca2";
 var dayForecast = document.getElementById("forecast");
-var currentEvent = document.getElementById("currentEvent");
+var weatherForecast = document.getElementById("fiveDay");
 
 //Retreiving Weather function
 function getWeatherApi() {
@@ -86,7 +86,7 @@ function getWeatherApi() {
             dayForecast.appendChild(lowTemp);
 
         
-        var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&appid=" + key;
+        var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&units=imperial&appid=" + key;
         
         fetch(forecastURL)
         .then(function (response) {
@@ -98,17 +98,44 @@ function getWeatherApi() {
 
             for (var i=1; i<8 ;i++){
             var futureDateResponse = (response.daily[i].dt);
-            var fd = new Date(i);
-            fd.setUTCSeconds(futureDateResponse);
+            var forecastDate = new Date(i);
+            forecastDate.setUTCSeconds(futureDateResponse);
+            var futureDate = forecastDate;
+            var forecastMonth = futureDate.getMonth()+1;
+            var forecastDay = futureDate.getDate();
+            var forecastYear = futureDate.getFullYear();
+
+            var fdOutput = forecastMonth +"/" + forecastDay + "/" + forecastYear
+
+            var fiveDay = document.createElement("div");
+            fiveDay.textContent=fdOutput
+            
+                
 
 
-            var fiveDay = document.createElement("h1");
-            fiveDay.textContent = fd;
+            weatherForecast.appendChild(fiveDay);
+                
+            var highForecast=document.createElement("p");
+            highForecast.textContent ="High Temp: " + parseInt(response.daily[i].temp.max)+ "° F" ;
 
-                weatherForecast.appendChild(fiveDay);
+            var lowForecast = document.createElement("p");
+            lowForecast.textContent ="Low Temp: " + parseInt(response.daily[i].temp.min)+ "° F";
 
-                console.log(fd);
+            var forecastDescription = document.createElement("p");
+            forecastDescription.textContent = (response.daily[i].weather[0].description);
+
+
+                fiveDay.appendChild(highForecast);
+                fiveDay.appendChild(lowForecast);
+                fiveDay.appendChild(forecastDescription);
+                console.log(fdOutput);
+                console.log( "High temp " + response.daily[i].temp.max)
+                console.log("low temp " +response.daily[i].temp.min );
+                console.log("description " + response.daily[i].weather[0].description)
             }
+
+
+
 
         })
         });
@@ -117,3 +144,6 @@ function getWeatherApi() {
 
 
 getWeatherApi();
+
+// Local Storage for recent searches
+
